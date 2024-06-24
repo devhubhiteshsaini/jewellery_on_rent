@@ -1,10 +1,9 @@
-import { useEffect } from 'react';
-import {  toast } from 'react-toastify';
+import Routers from "./Routes/Routers"
 function App() {
-  toast("Wow so easy!")
+  
   return (
-    <div className='h-screen bg-black'>
-
+    <div className='min-h-screen '>
+       <Routers/>
     </div>
   )
 }

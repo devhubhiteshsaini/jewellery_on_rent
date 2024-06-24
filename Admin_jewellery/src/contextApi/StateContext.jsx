@@ -1,25 +1,31 @@
-import React, { createContext, useState, useContext } from 'react';
-
+import React, { createContext, useState, useContext, useEffect } from 'react';
+import { handleIsLogin } from './api'
 // Create the context
 const StateContext = createContext();
 
 // Provider component
 const StateProvider = ({ children }) => {
   const [data, setData] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
-
-  const updateData = (newData) => {
-    setData(newData);
+  // checkk is login 
+  const checkIsLogin = () => {
+    console.log(handleIsLogin());
   };
 
+  useEffect(() => {
+    checkIsLogin()
+  },[])
+
+
   return (
-    <StateContext.Provider value={{ data, updateData }}>
+    <StateContext.Provider value={{ data, isLoading }}>
       {children}
     </StateContext.Provider>
   );
 };
 
-// Custom hook to consume the context
+
 const useStateContext = () => {
   return useContext(StateContext);
 };
